@@ -1,16 +1,20 @@
 #!/bin/bash
 
+cd "$(dirname "${BASH_SOURCE}")";
 
-# Variables 
+function sync() {
+	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" -avh --no-perms . ~;
+	source ~/.bash_profile;
+}
 
-dir=~/dotfiles
-files=".vimrc"
+if [ "$1" == "--force" -o "$1" == "-f" ]; then
+	sync;
+else
+	read -p "This might overwrite some shit.  Keep going? (y/n)" -n 1;
+	echo "";
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		sync;
+	fi;
+fi;
 
-# Symlink files
-echo "Begin symlinking"
-for file in $files; do
-	echo "Creating symlink to $file in home directory"
-	ln -s $dir/$file ~/.$file
-done
-
-echo "All Finished"
+unset sync;
