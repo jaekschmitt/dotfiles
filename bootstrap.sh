@@ -18,3 +18,12 @@ else
 fi;
 
 unset sync;
+
+# Adding extra setups for vim plugins
+git clone git://github.com/tpope/vim-fugitive.git ~/.vim/bundle
+vim -u NONE -c "helptags vim-fugitive/doc" -c q
+
+git clone git://github.com/vim-ruby/vim-ruby
+git clone git://github.com/tpope/vim-rails
+git clone git://github.com/tpope/vim-surround
+git clone git://github.com/kien/ctrlp.vim
