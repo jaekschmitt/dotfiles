@@ -21,9 +21,9 @@ set showtabline=2
 let mapleader=","
 
 " Color theme setup"
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+" set background=dark
+:color github
+" let g:solarized_termtrans=1
 
 if has("autocmd")
   autocmd BufRead,BufNewFile *.go set filetype=go sts=2 sw=2 ts=2 autoread
